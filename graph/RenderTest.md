@@ -23,6 +23,7 @@ LEqual   点的Alpha值小于等于 X时渲染,
 Always   全渲染,
 Never    全不渲染
 
+如：
 AlphaTest Greater _Cutoff
 
 ------------------------------------------------------------
@@ -69,6 +70,10 @@ OneMinusDstAlpha	1-目标颜色的Alpha值
 关于渲染队列
 Opaque队列的对象是从近到远处理
 Transparent队列的对象是从远到近处理
+
+
+
+
 
 
 
