@@ -66,5 +66,3 @@ OneMinusDstAlpha	1-目标颜色的Alpha值
 ------------------------------------------------------------
 关于性能，Alpha Test虽然逻辑简单，但是并不会比Alpha Blending提升多少，在IOS和某些Android设备上，Alpha Test的性能消耗反而更大，所以除非特殊情况，还是建议使用Blending。
 
-
-
