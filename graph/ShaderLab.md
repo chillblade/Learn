@@ -17,20 +17,30 @@
       //可包含多个SubShader块，Unity会选择第一个可以运行的的Shader
       SubShader
       {
-        //渲染状态指令
+        //渲染状态指令,同样适用于Pass
         LOD 100
         Cull  Back|Front|Off  //剔除模式
-        ZTest  Less|Greater|LEqual|GEqual|Equal|NotEqual|Always  深度测试是否通过的条件
-        ZWrite  On|Off  深度写入开关
-        Blend SrcFactor DstFactor  混合方式
+        ZTest  Less|Greater|LEqual|GEqual|Equal|NotEqual|Always  //深度测试是否通过的条件
+        ZWrite  On|Off  //深度写入开关
+        Blend SrcFactor DstFactor  //混合方式
         
-        //可选的标签
+        //可选的标签,不适用于Pass
         Tags
         {
-          //
+          //对着色器进行分类，以便可以统一替换
           "RenderType"="Opaque"
-          //队列
+          //队列，控制渲染顺序，以便透明物体统一延迟渲染
           "Queue"="Opaque"
+          //关闭批处理，如使用模型空间下的坐标进行顶点动画，不关闭会出现问题
+          "DisableBatching"="True"
+          //强制不投射阴影
+          "ForceNotShadowCasting"="True"
+          //忽略Projector的影响，通常用于半透明物体
+          "IgnoreProjector"="True"
+          //用于Sprites时关闭
+          "CanUseSpriteAtlas"="False"
+          //材质面板如何预览,默认是球形，可设置为Plane,SkyBox
+          "PreviewType"="Plane"
         }
 
         CGPROGRAM
@@ -65,5 +75,5 @@
         ENDCG
       }
 
-      FallBack "Transparent/Cutout/VertexLit"
+      FallBack "VertexLit" //如果所有SubShader都不支持则使用该Shader
     }
